@@ -16,7 +16,7 @@ const ProductManagement = () => {
     return (
         <div>
             <ProductForm product={currentProduct} onSave={handleSave} />
-            <ProductList onEdit={handleEdit} />
+            {/*<ProductList onEdit={handleEdit} />*/}
         </div>
     );
 };

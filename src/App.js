@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import ProductForm from './components/ProductForm';
 import ProductList from './components/ProductList';
 import './App.css';
+import ProductManagement from "./components/ProductManagement";
 
 function App() {
     return (
@@ -14,13 +15,14 @@ function App() {
                         <li><Link to="/view-products">View Products</Link></li>
                     </ul>
                 </nav>
-
+                {/*<ProductManagement />*/}
                 <Routes>
-                    <Route path="/create-product" element={<ProductForm />} />
+                    <Route path="/create-product" element={<ProductManagement />} />
 
                     <Route path="/view-products" element={<ProductList />} />
 
                     <Route path="/" element={<h1>Welcome to Product Management System</h1>} />
+                    {/*<ProductManagement />*/}
                 </Routes>
             </div>
         </Router>
