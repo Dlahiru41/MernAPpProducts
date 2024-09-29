@@ -4,6 +4,7 @@ import ProductForm from './components/ProductForm';
 import ProductList from './components/ProductList';
 import './App.css';
 import ProductManagement from "./components/ProductManagement";
+import ProductSummary from "./components/ProductSummary";
 
 function App() {
     return (
@@ -13,6 +14,8 @@ function App() {
                     <ul>
                         <li><Link to="/create-product">Create Product</Link></li>
                         <li><Link to="/view-products">View Products</Link></li>
+                        <li><Link to="/view-report">View Products</Link></li>
+
                     </ul>
                 </nav>
                 {/*<ProductManagement />*/}
@@ -20,6 +23,7 @@ function App() {
                     <Route path="/create-product" element={<ProductManagement />} />
 
                     <Route path="/view-products" element={<ProductList />} />
+                    <Route path="/view-report" element={<ProductSummary />} />
 
                     <Route path="/" element={<h1>Welcome to Product Management System</h1>} />
                     {/*<ProductManagement />*/}

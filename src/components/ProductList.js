@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../styles/ProductList.css'; // Assuming this contains your CSS
+import '../styles/ProductList.css';
 
 const ProductList = () => {
     const [products, setProducts] = useState([]);
-    const [editingProduct, setEditingProduct] = useState(null); // Track the product being edited
+    const [editingProduct, setEditingProduct] = useState(null);
     const [formData, setFormData] = useState({
         name: '',
         category: '',
@@ -13,9 +13,9 @@ const ProductList = () => {
         productionCost: '',
         totalProductCount: '',
     });
+    const [searchTerm, setSearchTerm] = useState(''); // State for search term
 
     useEffect(() => {
-        // Fetch products on component mount
         const fetchProducts = async () => {
             const res = await axios.get('http://localhost:5000/api/products');
             setProducts(res.data);
@@ -29,7 +29,7 @@ const ProductList = () => {
     };
 
     const handleEditClick = (product) => {
-        setEditingProduct(product._id); // Set the current product being edited
+        setEditingProduct(product._id);
         setFormData({
             name: product.name,
             category: product.category,
@@ -51,103 +51,90 @@ const ProductList = () => {
             product._id === editingProduct ? { ...product, ...formData } : product
         );
         setProducts(updatedProducts);
-        setEditingProduct(null); // Exit edit mode
+        setEditingProduct(null);
     };
 
     const handleCancelEdit = () => {
-        setEditingProduct(null); // Cancel edit mode
+        setEditingProduct(null);
     };
+
+    // Function to filter products based on the search term
+    const filteredProducts = products.filter(product =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     return (
         <div>
             <h1>Products</h1>
+
+            {/* Search Input */}
+            <input
+                type="text"
+                placeholder="Search by product name..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+            />
+
             <ul>
-                {products.map(product => (
+                {filteredProducts.map(product => (
                     <li key={product._id}>
-                        <p><strong>{product.name}</strong> - {product.category} - ${product.supplyMaterialCost + product.productionCost}</p>
+                        <p>
+                            <strong>{product.name}</strong> - {product.category} - $
+                            {product.supplyMaterialCost + product.productionCost}
+                        </p>
 
                         {editingProduct === product._id ? (
-                            <form className="product-form-inline" onSubmit={handleUpdateSubmit}>
-                                <div className="form-group">
-                                    <label htmlFor="name">Product Name:</label>
-                                    <input
-                                        type="text"
-                                        id="name"
-                                        name="name"
-                                        value={formData.name}
-                                        onChange={handleChange}
-                                        placeholder="Product Name"
-                                        required
-                                    />
-                                </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="category">Category:</label>
-                                    <input
-                                        type="text"
-                                        id="category"
-                                        name="category"
-                                        value={formData.category}
-                                        onChange={handleChange}
-                                        placeholder="Category"
-                                        required
-                                    />
-                                </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="distributionLocation">Distribution Location:</label>
-                                    <input
-                                        type="text"
-                                        id="distributionLocation"
-                                        name="distributionLocation"
-                                        value={formData.distributionLocation}
-                                        onChange={handleChange}
-                                        placeholder="Distribution Location"
-                                        required
-                                    />
-                                </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="supplyMaterialCost">Supply Material Cost:</label>
-                                    <input
-                                        type="number"
-                                        id="supplyMaterialCost"
-                                        name="supplyMaterialCost"
-                                        value={formData.supplyMaterialCost}
-                                        onChange={handleChange}
-                                        placeholder="Supply Material Cost"
-                                        required
-                                    />
-                                </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="productionCost">Production Cost:</label>
-                                    <input
-                                        type="number"
-                                        id="productionCost"
-                                        name="productionCost"
-                                        value={formData.productionCost}
-                                        onChange={handleChange}
-                                        placeholder="Production Cost"
-                                        required
-                                    />
-                                </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="totalProductCount">Total Product Count:</label>
-                                    <input
-                                        type="number"
-                                        id="totalProductCount"
-                                        name="totalProductCount"
-                                        value={formData.totalProductCount}
-                                        onChange={handleChange}
-                                        placeholder="Total Product Count"
-                                        required
-                                    />
-                                </div>
-
-                                <button type="submit" className="submit-btn">Update Product</button>
-                                <button type="button" className="cancel-btn" onClick={handleCancelEdit}>Cancel</button>
+                            <form onSubmit={handleUpdateSubmit}>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    placeholder="Product Name"
+                                    required
+                                />
+                                <input
+                                    type="text"
+                                    name="category"
+                                    value={formData.category}
+                                    onChange={handleChange}
+                                    placeholder="Category"
+                                    required
+                                />
+                                <input
+                                    type="text"
+                                    name="distributionLocation"
+                                    value={formData.distributionLocation}
+                                    onChange={handleChange}
+                                    placeholder="Distribution Location"
+                                    required
+                                />
+                                <input
+                                    type="number"
+                                    name="supplyMaterialCost"
+                                    value={formData.supplyMaterialCost}
+                                    onChange={handleChange}
+                                    placeholder="Supply Material Cost"
+                                    required
+                                />
+                                <input
+                                    type="number"
+                                    name="productionCost"
+                                    value={formData.productionCost}
+                                    onChange={handleChange}
+                                    placeholder="Production Cost"
+                                    required
+                                />
+                                <input
+                                    type="number"
+                                    name="totalProductCount"
+                                    value={formData.totalProductCount}
+                                    onChange={handleChange}
+                                    placeholder="Total Product Count"
+                                    required
+                                />
+                                <button type="submit">Update Product</button>
+                                <button type="button" onClick={handleCancelEdit}>Cancel</button>
                             </form>
                         ) : (
                             <>
