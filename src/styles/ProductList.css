@@ -1,0 +1,230 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Container for the product list */
+.product-list {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Product items */
+.product-item {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.product-item:last-child {
+    border-bottom: none;
+}
+
+/* Product info */
+.product-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-info p {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.product-info strong {
+    color: #333;
+}
+
+/* Buttons */
+.product-actions {
+    margin-top: 10px;
+}
+
+button {
+    padding: 8px 12px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+button.edit-btn {
+    background-color: #00aaff;
+    color: white;
+}
+
+button.delete-btn {
+    background-color: #ff4d4f;
+    color: white;
+}
+
+button.update-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+button.cancel-btn {
+    background-color: #6c757d;
+    color: white;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+/* Edit form */
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    background-color: #fafafa;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+input[type="text"],
+input[type="number"] {
+    flex: 1 1 calc(50% - 10px);
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    outline: none;
+    border-color: #00aaff;
+}
+
+button[type="submit"] {
+    margin-top: 10px;
+}
+
+input[type="text"]::placeholder,
+input[type="number"]::placeholder {
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+@media (max-width: 600px) {
+    input[type="text"],
+    input[type="number"] {
+        flex: 1 1 100%;
+    }
+
+    .product-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .product-actions {
+        margin-top: 10px;
+    }
+}
+
+/* Styling for the inline product edit form */
+.product-form-inline {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 15px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f1f1f1;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.form-group input {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.submit-btn, .cancel-btn {
+    grid-column: span 2;
+    padding: 10px 15px;
+    margin-top: 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.submit-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+.submit-btn:hover {
+    background-color: #218838;
+}
+
+.cancel-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.cancel-btn:hover {
+    background-color: #c82333;
+}
+
+/* Optional styling for list and buttons */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 15px;
+}
+
+button {
+    margin-right: 10px;
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
